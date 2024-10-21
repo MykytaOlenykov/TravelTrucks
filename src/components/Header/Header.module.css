@@ -3,18 +3,24 @@
   top: 0;
   left: 0;
 
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 24px 64px;
+  padding: 0 64px;
   width: 100%;
 
   background-color: var(--bg-secondary-color);
 }
 
+.container {
+  position: relative;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 24px 0;
+}
+
 .logo {
   position: absolute;
-  left: 64px;
+  left: 0;
   top: 50%;
 
   cursor: pointer;
@@ -39,5 +45,5 @@
 }
 
 .link:global(.active) {
-  color: var(--accent-primary-color);
+  color: var(--accent-secondary-color);
 }

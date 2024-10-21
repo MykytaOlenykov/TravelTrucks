@@ -1,11 +1,14 @@
 import { Route, Routes } from "react-router-dom";
 import Layout from "./components/Layout";
+import { lazy } from "react";
+
+const HomePage = lazy(() => import("./pages/HomePage"));
 
 function App() {
   return (
     <Routes>
       <Route path="/" element={<Layout />}>
-        <Route index element={<>HomePage</>} />
+        <Route index element={<HomePage />} />
         <Route path="/catalog" element={<>HomePage</>} />
         <Route path="/catalog/:id" element={<>HomePage</>} />
       </Route>

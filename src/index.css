@@ -24,7 +24,11 @@
 }
 
 :root {
-  --accent-primary-color: rgba(216, 67, 67, 1);
+  --primary-color: rgba(255, 255, 255, 1);
+  --secondary-color: rgba(247, 247, 247, 1);
+
+  --accent-primary-color: rgba(228, 72, 72, 1);
+  --accent-secondary-color: rgba(216, 67, 67, 1);
 
   --text-primary-color: rgba(16, 24, 40, 1);
 
@@ -58,4 +62,6 @@ body {
   font-family: Inter, sans-serif;
   line-height: 1.5;
   color: var(--text-primary-color);
+
+  background-color: var(--primary-color);
 }

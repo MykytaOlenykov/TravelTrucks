@@ -12,24 +12,26 @@ export default function Header() {
 
   return (
     <header className={css.header}>
-      <img
-        className={css.logo}
-        src={logo}
-        alt="Site logo"
-        onClick={() => navigate("/")}
-      />
+      <div className={css.container}>
+        <img
+          className={css.logo}
+          src={logo}
+          alt="Site logo"
+          onClick={() => navigate("/")}
+        />
 
-      <nav>
-        <ul className={css.list}>
-          {routes.map(({ path, title }) => (
-            <li key={path}>
-              <NavLink to={path} className={css.link}>
-                {title}
-              </NavLink>
-            </li>
-          ))}
-        </ul>
-      </nav>
+        <nav>
+          <ul className={css.list}>
+            {routes.map(({ path, title }) => (
+              <li key={path}>
+                <NavLink to={path} className={css.link}>
+                  {title}
+                </NavLink>
+              </li>
+            ))}
+          </ul>
+        </nav>
+      </div>
     </header>
   );
 }
