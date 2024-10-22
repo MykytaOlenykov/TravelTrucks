@@ -1,4 +1,5 @@
 import React, { useRef, useState } from "react";
+import classNames from "classnames";
 import { BsMap } from "react-icons/bs";
 import { MdClose } from "react-icons/md";
 
@@ -9,7 +10,7 @@ import Input from "../Input";
 import css from "./LocationSelect.module.css";
 
 export default function LocationSelect() {
-  const [filterLocation, setFilterLocation] = useState("");
+  const [locationFilter, setLocationFilter] = useState("");
   const [selectedLocation, setSelectedLocation] = useState("");
   const [showLocationsList, setShowLocationsList] = useState(false);
 
@@ -17,48 +18,52 @@ export default function LocationSelect() {
 
   const handleChangeSearchLocation = (e) => {
     const { value } = e.target;
-    setFilterLocation(value);
+    setLocationFilter(value);
   };
 
   const handleSelectLocation = (location) => {
-    setFilterLocation(location);
+    setLocationFilter(location);
     setSelectedLocation(location);
     setShowLocationsList(false);
   };
 
   const handleShowLocationsList = () => {
     setShowLocationsList(true);
-    setFilterLocation(selectedLocation);
+    setLocationFilter(selectedLocation);
   };
 
   const handleHideLocationsList = () => {
     setShowLocationsList(false);
     if (selectedLocation) {
-      setFilterLocation(selectedLocation);
+      setLocationFilter(selectedLocation);
     } else {
-      setFilterLocation("");
+      setLocationFilter("");
     }
   };
 
   const handleClearSelect = () => {
     setSelectedLocation("");
-    setFilterLocation("");
+    setLocationFilter("");
   };
 
   useOutsideClick(locationsListRef, handleHideLocationsList);
 
   const visibledLocations = campersLocations.filter((location) =>
-    location.trim().toLowerCase().includes(filterLocation.trim().toLowerCase())
+    location.trim().toLowerCase().includes(locationFilter.trim().toLowerCase())
   );
 
   return (
     <>
       <p className={css.label}>Location</p>
       <div className={css.container}>
-        <BsMap className={`${css.icon} ${css["icon--left"]}`} />
+        <BsMap
+          className={classNames(css.icon, css["icon--left"], {
+            [css["icon--active"]]: !!locationFilter.trim(),
+          })}
+        />
         {!!selectedLocation && (
           <MdClose
-            className={`${css.icon} ${css["icon--right"]}`}
+            className={classNames(css.icon, css["icon--right"])}
             onClick={handleClearSelect}
           />
         )}
@@ -66,7 +71,7 @@ export default function LocationSelect() {
         <Input
           className={css.input}
           style={{ paddingRight: selectedLocation ? 46 : undefined }}
-          value={filterLocation}
+          value={locationFilter}
           type="text"
           placeholder="City"
           onChange={handleChangeSearchLocation}

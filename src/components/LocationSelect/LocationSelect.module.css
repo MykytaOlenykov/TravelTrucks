@@ -33,6 +33,10 @@
   fill: var(--text-primary-color);
 }
 
+.icon--active {
+  fill: var(--text-primary-color);
+}
+
 .input {
   padding-left: 46px;
 }
