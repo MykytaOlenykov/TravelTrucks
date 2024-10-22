@@ -1,3 +1,9 @@
+import LocationSelect from "../LocationSelect";
+
 export default function Sidebar() {
-  return <div></div>;
+  return (
+    <div>
+      <LocationSelect />
+    </div>
+  );
 }

@@ -31,8 +31,11 @@
   --accent-secondary-color: rgba(216, 67, 67, 1);
 
   --text-primary-color: rgba(16, 24, 40, 1);
+  --text-secondary-color: rgba(71, 84, 103, 1);
 
   --bg-secondary-color: rgba(242, 244, 247, 1);
+
+  --label-color: rgba(108, 113, 123, 1);
 }
 
 h1,
