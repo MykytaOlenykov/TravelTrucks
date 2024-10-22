@@ -4,8 +4,6 @@ const campersAPI = axios.create({
   baseURL: import.meta.env.VITE_CAMPERS_API_URL,
 });
 
-console.log(import.meta.env.VITE_CAMPERS_API_URL);
-
 export const camperService = {
   api: campersAPI,
   async getAll() {

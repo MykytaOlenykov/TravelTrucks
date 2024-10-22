@@ -4,7 +4,7 @@ import classNames from "classnames";
 import { BsMap } from "react-icons/bs";
 import { MdClose } from "react-icons/md";
 
-import { useOutsideClick } from "../hooks";
+import { useOutsideClick } from "../../hooks";
 import { campersLocations } from "../../utils";
 import {
   changeLocationFilter,
@@ -60,49 +60,46 @@ export default function LocationSelect() {
   );
 
   return (
-    <>
-      <p className={css.label}>Location</p>
-      <div className={css.container}>
-        <BsMap
-          className={classNames(css.icon, css["icon--left"], {
-            [css["icon--active"]]: !!locationFilter.trim(),
-          })}
+    <div className={css.container}>
+      <BsMap
+        className={classNames(css.icon, css["icon--left"], {
+          [css["icon--active"]]: !!locationFilter.trim(),
+        })}
+      />
+      {!!selectedLocationFilter && (
+        <MdClose
+          className={classNames(css.icon, css["icon--right"])}
+          onClick={handleClearSelect}
         />
-        {!!selectedLocationFilter && (
-          <MdClose
-            className={classNames(css.icon, css["icon--right"])}
-            onClick={handleClearSelect}
-          />
-        )}
+      )}
 
-        <Input
-          className={css.input}
-          style={{ paddingRight: selectedLocationFilter ? 46 : undefined }}
-          value={locationFilter}
-          type="text"
-          placeholder="City"
-          onChange={handleChangeSearchLocation}
-          onClick={handleShowLocationsList}
-        />
+      <Input
+        className={css.input}
+        style={{ paddingRight: selectedLocationFilter ? 46 : undefined }}
+        value={locationFilter}
+        type="text"
+        placeholder="City"
+        onChange={handleChangeSearchLocation}
+        onClick={handleShowLocationsList}
+      />
 
-        {showLocationsList && (
-          <div className={css.list} ref={locationsListRef}>
-            {visibledLocations.map((location, idx) => (
-              <React.Fragment key={location}>
-                <div
-                  className={css.item}
-                  onClick={() => handleSelectLocation(location)}
-                >
-                  {location}
-                </div>
-                {visibledLocations.length - 1 > idx && (
-                  <div className={css.separator} />
-                )}
-              </React.Fragment>
-            ))}
-          </div>
-        )}
-      </div>
-    </>
+      {showLocationsList && (
+        <div className={css.list} ref={locationsListRef}>
+          {visibledLocations.map((location, idx) => (
+            <React.Fragment key={location}>
+              <div
+                className={css.item}
+                onClick={() => handleSelectLocation(location)}
+              >
+                {location}
+              </div>
+              {visibledLocations.length - 1 > idx && (
+                <div className={css.separator} />
+              )}
+            </React.Fragment>
+          ))}
+        </div>
+      )}
+    </div>
   );
 }
