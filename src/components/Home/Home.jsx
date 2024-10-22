@@ -6,7 +6,7 @@ export default function Home() {
   const navigate = useNavigate();
 
   return (
-    <div className={css.container}>
+    <section className={css.container}>
       <h1 className={css.title}>Campers of your dreams</h1>
       <p className={css.text}>
         You can find everything you want in our catalog
@@ -19,6 +19,6 @@ export default function Home() {
       >
         View Now
       </Button>
-    </div>
+    </section>
   );
 }
