@@ -1,4 +1,4 @@
-import { vehicleEquipmentOptions } from "../../utils";
+import { vehicleEquipmentOptions, vehicleTypeOptions } from "../../utils";
 
 import FiltersList from "../FiltersList";
 import LocationSelect from "../LocationSelect";
@@ -20,7 +20,7 @@ export default function Sidebar() {
           options={vehicleEquipmentOptions}
         />
 
-        <FiltersList title="Vehicle type" options={[]} />
+        <FiltersList title="Vehicle type" options={vehicleTypeOptions} />
       </div>
     </div>
   );

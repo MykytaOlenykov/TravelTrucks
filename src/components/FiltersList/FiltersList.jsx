@@ -7,10 +7,10 @@ export default function FiltersList({ title, options }) {
       <div className={css.separator} />
 
       <ul className={css.list}>
-        {options.map(({ key, icon: Icon }) => (
-          <li key={key} className={css.item}>
+        {options.map(({ value, title, icon: Icon }) => (
+          <li key={value} className={css.item}>
             <Icon className={css.icon} />
-            <p className={css.text}>{key}</p>
+            <p className={css.text}>{title}</p>
           </li>
         ))}
       </ul>
