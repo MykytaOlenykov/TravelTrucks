@@ -1,17 +1,24 @@
 import React, { useRef, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import classNames from "classnames";
 import { BsMap } from "react-icons/bs";
 import { MdClose } from "react-icons/md";
 
 import { useOutsideClick } from "../hooks";
 import { campersLocations } from "../../utils";
+import {
+  changeLocationFilter,
+  selectLocationFilter,
+} from "../../store/filtersSlice";
 
 import Input from "../Input";
 import css from "./LocationSelect.module.css";
 
 export default function LocationSelect() {
+  const dispatch = useDispatch();
+  const selectedLocationFilter = useSelector(selectLocationFilter);
+
   const [locationFilter, setLocationFilter] = useState("");
-  const [selectedLocation, setSelectedLocation] = useState("");
   const [showLocationsList, setShowLocationsList] = useState(false);
 
   const locationsListRef = useRef();
@@ -22,27 +29,27 @@ export default function LocationSelect() {
   };
 
   const handleSelectLocation = (location) => {
+    dispatch(changeLocationFilter(location));
     setLocationFilter(location);
-    setSelectedLocation(location);
     setShowLocationsList(false);
   };
 
   const handleShowLocationsList = () => {
     setShowLocationsList(true);
-    setLocationFilter(selectedLocation);
+    setLocationFilter(selectedLocationFilter);
   };
 
   const handleHideLocationsList = () => {
     setShowLocationsList(false);
-    if (selectedLocation) {
-      setLocationFilter(selectedLocation);
+    if (selectedLocationFilter) {
+      setLocationFilter(selectedLocationFilter);
     } else {
       setLocationFilter("");
     }
   };
 
   const handleClearSelect = () => {
-    setSelectedLocation("");
+    dispatch(changeLocationFilter(""));
     setLocationFilter("");
   };
 
@@ -61,7 +68,7 @@ export default function LocationSelect() {
             [css["icon--active"]]: !!locationFilter.trim(),
           })}
         />
-        {!!selectedLocation && (
+        {!!selectedLocationFilter && (
           <MdClose
             className={classNames(css.icon, css["icon--right"])}
             onClick={handleClearSelect}
@@ -70,7 +77,7 @@ export default function LocationSelect() {
 
         <Input
           className={css.input}
-          style={{ paddingRight: selectedLocation ? 46 : undefined }}
+          style={{ paddingRight: selectedLocationFilter ? 46 : undefined }}
           value={locationFilter}
           type="text"
           placeholder="City"
