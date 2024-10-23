@@ -10,3 +10,8 @@
   gap: 32px;
   margin-top: 40px;
 }
+
+.button {
+  margin-top: 40px;
+  min-width: 166px;
+}

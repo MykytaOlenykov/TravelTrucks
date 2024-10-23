@@ -3,16 +3,21 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   changeVehicleEquipment,
   changeVehicleTypes,
+  selectLocationFilter,
   selectVehicleEquipments,
   selectVehicleTypes,
 } from "../../store/filtersSlice";
+import { changeSearchParams } from "../../store/campersSlice";
+import { formatCampersSearchParams } from "../../utils";
 
 import FiltersList from "../FiltersList";
 import LocationSelect from "../LocationSelect";
+import Button from "../Button";
 import css from "./Sidebar.module.css";
 
 export default function Sidebar() {
   const dispatch = useDispatch();
+  const locationFilter = useSelector(selectLocationFilter);
   const vehicleEquipments = useSelector(selectVehicleEquipments);
   const vehicleTypes = useSelector(selectVehicleTypes);
 
@@ -22,6 +27,15 @@ export default function Sidebar() {
 
   const handleSelectVehicleTypes = (options) => {
     dispatch(changeVehicleTypes(options.value));
+  };
+
+  const handleSearchCampers = async () => {
+    const searchParams = formatCampersSearchParams({
+      vehicleEquipments,
+      vehicleTypes,
+      location: locationFilter,
+    });
+    dispatch(changeSearchParams(searchParams));
   };
 
   return (
@@ -46,6 +60,14 @@ export default function Sidebar() {
           onSelectFilter={handleSelectVehicleTypes}
         />
       </div>
+
+      <Button
+        className={css.button}
+        type="button"
+        onClick={handleSearchCampers}
+      >
+        Search
+      </Button>
     </div>
   );
 }

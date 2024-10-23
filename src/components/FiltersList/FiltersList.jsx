@@ -1,38 +1,6 @@
-import {
-  BsWind,
-  BsDiagram3,
-  BsCupHot,
-  BsFuelPump,
-  BsUiRadios,
-  BsDisplay,
-  BsGrid1X2,
-  BsGrid,
-  BsGrid3X3Gap,
-} from "react-icons/bs";
-import { PiShower } from "react-icons/pi";
-import { TbFridge } from "react-icons/tb";
-import { LuMicrowave } from "react-icons/lu";
-import { IoWaterOutline } from "react-icons/io5";
-
 import css from "./FiltersList.module.css";
 import classNames from "classnames";
-
-const icons = {
-  AC: (props) => <BsWind {...props} />,
-  transmission: (props) => <BsDiagram3 {...props} />,
-  kitchen: (props) => <BsCupHot {...props} />,
-  TV: (props) => <BsDisplay {...props} />,
-  bathroom: (props) => <PiShower {...props} />,
-  engine: (props) => <BsFuelPump {...props} />,
-  radio: (props) => <BsUiRadios {...props} />,
-  refrigerator: (props) => <TbFridge {...props} />,
-  microwave: (props) => <LuMicrowave {...props} />,
-  gas: (props) => <BsWind {...props} />,
-  water: (props) => <IoWaterOutline {...props} />,
-  panelTruck: (props) => <BsGrid1X2 {...props} />,
-  fullyIntegrated: (props) => <BsGrid {...props} />,
-  alcove: (props) => <BsGrid3X3Gap {...props} />,
-};
+import { campersCategoriesIcons } from "../../utils";
 
 export default function FiltersList({ title, options, onSelectFilter }) {
   return (
@@ -42,11 +10,11 @@ export default function FiltersList({ title, options, onSelectFilter }) {
 
       <ul className={css.list}>
         {options.map(({ value, title, field, selected, icon }) => {
-          const Icon = icons[icon];
+          const Icon = campersCategoriesIcons[icon];
 
           return (
             <li
-              key={`${field}=${value ?? ""}`}
+              key={`${field}=${value}`}
               className={classNames(css.item, {
                 [css["item--selected"]]: selected,
               })}

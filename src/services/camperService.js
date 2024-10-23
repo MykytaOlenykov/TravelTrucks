@@ -6,8 +6,8 @@ const campersAPI = axios.create({
 
 export const camperService = {
   api: campersAPI,
-  async getAll() {
-    const { data } = await campersAPI.get("campers");
+  async getAll({ params }) {
+    const { data } = await campersAPI.get("campers", { params });
     return data;
   },
   async getById(camperId) {

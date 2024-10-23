@@ -38,6 +38,7 @@
   position: absolute;
   top: calc(100% + 12px);
   left: 0;
+  z-index: 10;
 
   width: 100%;
 
