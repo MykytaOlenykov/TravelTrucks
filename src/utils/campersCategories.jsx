@@ -31,4 +31,38 @@ export const campersCategoriesIcons = {
   alcove: (props) => <BsGrid3X3Gap {...props} />,
 };
 
+export const campersCategoriesLabels = {
+  AC: "AC",
+  automatic: "Automatic",
+  kitchen: "Kitchen",
+  TV: "TV",
+  bathroom: "Bathroom",
+  petrol: "Petrol",
+  radio: "Radio",
+  refrigerator: "Refrigerator",
+  microwave: "Microwave",
+  gas: "Gas",
+  water: "Water",
+  panelTruck: "Van",
+  fullyIntegrated: "Fully Integrated",
+  alcove: "Alcove",
+};
+
 export const campersCategories = Object.keys(campersCategoriesIcons);
+
+export function getCamperCategories(camper) {
+  const categories = {};
+
+  for (const [key, value] of Object.entries(camper)) {
+    const valueType = typeof value;
+    if (valueType !== "boolean" && valueType !== "string") continue;
+    if (!value) continue;
+    if (valueType === "boolean" && campersCategories.includes(key)) {
+      categories[key] = true;
+    } else if (campersCategories.includes(value)) {
+      categories[value] = true;
+    }
+  }
+
+  return categories;
+}

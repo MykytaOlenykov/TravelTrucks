@@ -1,6 +1,6 @@
 import css from "./FiltersList.module.css";
 import classNames from "classnames";
-import { campersCategoriesIcons } from "../../utils";
+import { campersCategoriesIcons, campersCategoriesLabels } from "../../utils";
 
 export default function FiltersList({ title, options, onSelectFilter }) {
   return (
@@ -9,19 +9,19 @@ export default function FiltersList({ title, options, onSelectFilter }) {
       <div className={css.separator} />
 
       <ul className={css.list}>
-        {options.map(({ value, title, field, selected, icon }) => {
-          const Icon = campersCategoriesIcons[icon];
+        {options.map(({ value, field, selected, categoryKey }) => {
+          const Icon = campersCategoriesIcons[categoryKey];
 
           return (
             <li
-              key={`${field}=${value}`}
+              key={`${categoryKey}:${field}=${value}`}
               className={classNames(css.item, {
                 [css["item--selected"]]: selected,
               })}
               onClick={() => onSelectFilter({ field, value })}
             >
               <Icon className={css.icon} />
-              <p className={css.text}>{title}</p>
+              <p className={css.text}>{campersCategoriesLabels[categoryKey]}</p>
             </li>
           );
         })}

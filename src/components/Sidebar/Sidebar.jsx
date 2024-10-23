@@ -39,7 +39,7 @@ export default function Sidebar() {
   };
 
   return (
-    <div>
+    <div className={css.sidebar}>
       <p className={css.label} style={{ marginBottom: 8 }}>
         Location
       </p>

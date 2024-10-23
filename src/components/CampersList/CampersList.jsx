@@ -1,23 +1,29 @@
+import { getCamperCategories } from "../../utils";
 import CamperCard from "../CamperCard";
 import css from "./CampersList.module.css";
 
 export default function CampersList({ campers }) {
   return (
     <ul className={css.list}>
-      {campers.map(
-        ({ id, name, description, rating, location, gallery, reviews }) => (
+      {campers.map((camper) => {
+        const { id, name, description, rating, location, gallery, reviews } =
+          camper;
+
+        return (
           <li key={id}>
             <CamperCard
+              id={id}
               name={name}
               description={description}
               rating={rating}
               location={location}
               imgSrc={gallery[0]?.thumb}
               reviewsCount={reviews.length}
+              {...getCamperCategories(camper)}
             />
           </li>
-        )
-      )}
+        );
+      })}
     </ul>
   );
 }
