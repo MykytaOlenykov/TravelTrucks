@@ -8,7 +8,7 @@ export default function Layout() {
     <>
       <Header />
       <main>
-        <Suspense fallback={<PageLoader color="rgba(16, 24, 40, 1)" />}>
+        <Suspense fallback={<PageLoader />}>
           <Outlet />
         </Suspense>
       </main>

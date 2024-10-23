@@ -9,7 +9,7 @@ export default function PageLoader() {
         padding: "24px 0",
       }}
     >
-      <BeatLoader />
+      <BeatLoader color="rgba(16, 24, 40, 1)" />
     </div>
   );
 }

@@ -1,10 +1,15 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { fetchCampers } from "./campersOperations";
 
+const defaultSearchParams = {
+  limit: 4,
+  page: 1,
+};
+
 const initialState = {
   items: [],
   total: 0,
-  searchParams: {},
+  searchParams: { ...defaultSearchParams },
 };
 
 const campersSlice = createSlice({
@@ -12,7 +17,7 @@ const campersSlice = createSlice({
   initialState,
   reducers: {
     changeSearchParams(state, { payload }) {
-      state.searchParams = payload;
+      state.searchParams = { ...defaultSearchParams, ...payload };
     },
   },
   extraReducers: (builder) =>
@@ -23,6 +28,8 @@ const campersSlice = createSlice({
 });
 
 export const selectCampers = (state) => state.campers.items;
+
+export const selectCampersSearchParams = (state) => state.campers.searchParams;
 
 export const { changeSearchParams } = campersSlice.actions;
 

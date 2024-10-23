@@ -1,16 +1,21 @@
-.container {
+.section {
   display: flex;
   justify-content: center;
   align-items: start;
   flex-direction: column;
-  padding: 64px;
   min-height: calc(100vh - 72px);
-  width: 100%;
 
   background-image: url("../../assets//images/home-bg.webp");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+}
+
+.container {
+  margin: 0 auto;
+  padding: 64px;
+  max-width: 1440px;
+  width: 100%;
 }
 
 .title {
