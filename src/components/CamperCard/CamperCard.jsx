@@ -48,7 +48,7 @@ export default function CamperCard({
         <Button
           className={css.button}
           type="button"
-          onClick={() => navigate(`/category/${id}`)}
+          onClick={() => navigate(`/catalog/${id}`)}
         >
           Show more
         </Button>

@@ -15,13 +15,19 @@ export default function FiltersList({ title, options, onSelectFilter }) {
           return (
             <li
               key={`${categoryKey}:${field}=${value}`}
-              className={classNames(css.item, {
-                [css["item--selected"]]: selected,
-              })}
               onClick={() => onSelectFilter({ field, value })}
             >
-              <Icon className={css.icon} />
-              <p className={css.text}>{campersCategoriesLabels[categoryKey]}</p>
+              <button
+                className={classNames(css.item, {
+                  [css["item--selected"]]: selected,
+                })}
+                type="button"
+              >
+                <Icon className={css.icon} />
+                <p className={css.text}>
+                  {campersCategoriesLabels[categoryKey]}
+                </p>
+              </button>
             </li>
           );
         })}
