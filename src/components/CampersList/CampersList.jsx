@@ -6,8 +6,16 @@ export default function CampersList({ campers }) {
   return (
     <ul className={css.list}>
       {campers.map((camper) => {
-        const { id, name, description, rating, location, gallery, reviews } =
-          camper;
+        const {
+          id,
+          name,
+          description,
+          rating,
+          location,
+          gallery,
+          reviews,
+          price,
+        } = camper;
 
         return (
           <li key={id}>
@@ -17,6 +25,7 @@ export default function CampersList({ campers }) {
               description={description}
               rating={rating}
               location={location}
+              price={price}
               imgSrc={gallery[0]?.thumb}
               reviewsCount={reviews.length}
               {...getCamperCategories(camper)}

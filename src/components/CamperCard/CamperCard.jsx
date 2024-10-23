@@ -1,10 +1,12 @@
 import { useNavigate } from "react-router-dom";
+import { BsHeart } from "react-icons/bs";
 
 import CamperHeader from "../CamperHeader";
 import CategoriesList from "../CategoriesList";
 import Image from "../Image";
 import Button from "../Button";
 import css from "./CamperCard.module.css";
+import CamperPrice from "../CamperPrice";
 
 export default function CamperCard({
   id,
@@ -12,6 +14,7 @@ export default function CamperCard({
   description,
   rating,
   location,
+  price,
   reviewsCount,
   imgSrc,
   ...categories
@@ -29,6 +32,13 @@ export default function CamperCard({
             camperLocation={location}
             camperReviewsCount={reviewsCount}
           />
+
+          <div className={css["action-bar"]}>
+            <CamperPrice price={price} />
+            <button className="reset-button" type="button">
+              <BsHeart className={css.icon} />
+            </button>
+          </div>
         </div>
 
         <p className={css.desc}>{description}</p>

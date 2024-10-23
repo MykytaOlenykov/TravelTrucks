@@ -84,3 +84,12 @@ body {
   clip-path: inset(50%);
   margin: -1px;
 }
+
+.reset-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  background-color: transparent;
+  border: none;
+}
