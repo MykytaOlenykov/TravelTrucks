@@ -1,6 +1,6 @@
 import { BeatLoader } from "react-spinners";
 
-export default function PageLoader() {
+export default function Loader() {
   return (
     <div
       style={{

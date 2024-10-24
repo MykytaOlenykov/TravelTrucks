@@ -1,14 +1,14 @@
 import { Suspense } from "react";
 import { Outlet } from "react-router-dom";
 import Header from "../Header";
-import PageLoader from "../Loaders/PageLoader";
+import Loader from "../Loader";
 
 export default function Layout() {
   return (
     <>
       <Header />
       <main>
-        <Suspense fallback={<PageLoader />}>
+        <Suspense fallback={<Loader />}>
           <Outlet />
         </Suspense>
       </main>

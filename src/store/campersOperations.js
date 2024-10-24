@@ -1,5 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { camperService } from "../services/camperService";
+import { isAxiosError } from "axios";
 
 export const fetchCampers = createAsyncThunk(
   "campers/fetchAll",
@@ -8,7 +9,8 @@ export const fetchCampers = createAsyncThunk(
       const data = await camperService.getAll({ params });
       return data;
     } catch (error) {
-      return rejectWithValue(error);
+      const errorCode = isAxiosError(error) ? error.response.status : 500;
+      return rejectWithValue({ error: errorCode });
     }
   }
 );
