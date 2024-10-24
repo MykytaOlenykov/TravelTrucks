@@ -1,0 +1,19 @@
+.list {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 48px;
+}
+
+.img {
+  width: 100%;
+  height: 312px;
+
+  cursor: pointer;
+  transition: transform 250ms linear;
+}
+
+@media (hover: hover) {
+  .img:hover {
+    transform: scale(1.05);
+  }
+}

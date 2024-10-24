@@ -1,3 +1,5 @@
 .section {
+  margin: 0 auto;
   padding: 48px 64px;
+  max-width: 1440px;
 }
