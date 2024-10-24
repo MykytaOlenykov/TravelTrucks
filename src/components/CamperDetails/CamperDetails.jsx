@@ -10,6 +10,7 @@ import CamperPrice from "../CamperPrice";
 import CamperGallery from "../CamperGallery";
 import CamperFeatures from "../CamperFeatures";
 import CamperReviews from "../CamperReviews";
+import CamperForm from "../CamperForm";
 import Loader from "../Loader";
 import NotFound from "../NotFound";
 import css from "./CamperDetails.module.css";
@@ -22,16 +23,13 @@ export default function CamperDetails() {
   const [camper, setCamper] = useState(null);
   const [loading, setLoading] = useState(false);
   const [notFound, setNotFound] = useState(0);
-  const [subPage, setSubPage] = useState(routes[1]);
+  const [subPage, setSubPage] = useState(routes[0]);
 
   useEffect(() => {
     (async () => {
       try {
         setLoading(true);
-        setNotFound(false);
-
         const data = await camperService.getById(id);
-
         setCamper(data);
         // eslint-disable-next-line no-unused-vars
       } catch (error) {
@@ -105,7 +103,9 @@ export default function CamperDetails() {
           )}
           {subPage === "Reviews" && <CamperReviews reviews={camper.reviews} />}
         </div>
-        <div className={css.form}></div>
+        <div className={css.form}>
+          <CamperForm />
+        </div>
       </div>
     </section>
   );
