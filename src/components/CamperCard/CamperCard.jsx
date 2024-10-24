@@ -1,11 +1,10 @@
-import { BsHeart } from "react-icons/bs";
-
 import CamperHeader from "../CamperHeader";
 import CategoriesList from "../CategoriesList";
 import Image from "../Image";
 import Button from "../Button";
 import css from "./CamperCard.module.css";
 import CamperPrice from "../CamperPrice";
+import FavoriteBtn from "../FavoriteBtn/FavoriteBtn";
 
 export default function CamperCard({
   id,
@@ -36,9 +35,7 @@ export default function CamperCard({
 
           <div className={css["action-bar"]}>
             <CamperPrice price={price} />
-            <button className="reset-button" type="button">
-              <BsHeart className={css.icon} />
-            </button>
+            <FavoriteBtn camperId={id} />
           </div>
         </div>
 

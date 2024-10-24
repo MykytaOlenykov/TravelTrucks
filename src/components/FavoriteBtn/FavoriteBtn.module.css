@@ -1,0 +1,10 @@
+.icon {
+  width: 26px;
+  height: 24px;
+
+  fill: var(--text-primary-color);
+}
+
+.icon--active {
+  fill: var(--accent-primary-color);
+}

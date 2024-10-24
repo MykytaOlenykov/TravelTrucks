@@ -40,10 +40,3 @@
   gap: 12px;
   margin-left: 24px;
 }
-
-.icon {
-  width: 26px;
-  height: 24px;
-
-  stroke: var(--text-primary-color);
-}

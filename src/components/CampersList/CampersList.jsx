@@ -24,6 +24,7 @@ export default function CampersList() {
   const listRef = useRef(null);
 
   const showLoadMoreBtn = !loading && campers.length < totalCampers;
+  const renderFooter = showLoadMoreBtn || loading || notFound;
 
   useEffect(() => {
     containerRef.current.scrollTo({
@@ -118,22 +119,24 @@ export default function CampersList() {
         })}
       </ul>
 
-      <div
-        style={{ marginTop: totalCampers > 0 ? 40 : undefined }}
-        className={css.footer}
-      >
-        {notFound && <p className={css.text}>Not found</p>}
-        {loading && <BeatLoader color="rgba(16, 24, 40, 1)" />}
-        {showLoadMoreBtn && (
-          <button
-            className={css.button}
-            type="button"
-            onClick={() => loadNextPage(page)}
-          >
-            Load more
-          </button>
-        )}
-      </div>
+      {renderFooter && (
+        <div
+          style={{ marginTop: totalCampers > 0 ? 40 : undefined }}
+          className={css.footer}
+        >
+          {notFound && <p className={css.text}>Not found</p>}
+          {loading && <BeatLoader color="rgba(16, 24, 40, 1)" />}
+          {showLoadMoreBtn && (
+            <button
+              className={css.button}
+              type="button"
+              onClick={() => loadNextPage(page)}
+            >
+              Load more
+            </button>
+          )}
+        </div>
+      )}
     </div>
   );
 }
