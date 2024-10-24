@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import { BeatLoader } from "react-spinners";
+import toast from "react-hot-toast";
 import { isAxiosError } from "axios";
 
 import { selectCampersSearchParams } from "../../store/campersSlice";
@@ -79,8 +80,9 @@ export default function CampersList() {
 
       setCampers((prev) => [...prev, ...data.items]);
       setTotalCampers(data.total);
+      /* eslint-disable no-unused-vars */
     } catch (error) {
-      console.log(error);
+      toast.error("Something went wrong. Try again.");
     } finally {
       setLoading(false);
     }
