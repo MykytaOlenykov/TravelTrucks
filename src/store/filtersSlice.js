@@ -109,12 +109,11 @@ const filtersSlice = createSlice({
       }
     },
     changeVehicleTypes(state, { payload }) {
-      const idx = state.vehicleTypes.findIndex(
-        ({ value }) => value === payload
+      state.vehicleTypes = state.vehicleTypes.map((type) =>
+        type.value === payload
+          ? { ...type, selected: !type.selected }
+          : { ...type, selected: false }
       );
-      if (idx !== -1) {
-        state.vehicleTypes[idx].selected = !state.vehicleTypes[idx].selected;
-      }
     },
   },
 });
