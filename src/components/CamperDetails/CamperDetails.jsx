@@ -1,14 +1,19 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import classNames from "classnames";
 
 import { camperService } from "../../services";
+import { getCamperCategories } from "../../utils";
 
 import CamperHeader from "../CamperHeader";
 import CamperPrice from "../CamperPrice";
 import CamperGallery from "../CamperGallery";
+import CamperFeatures from "../CamperFeatures";
 import Loader from "../Loader";
 import NotFound from "../NotFound";
 import css from "./CamperDetails.module.css";
+
+const routes = ["Features", "Reviews"];
 
 export default function CamperDetails() {
   const { id } = useParams();
@@ -16,6 +21,7 @@ export default function CamperDetails() {
   const [camper, setCamper] = useState(null);
   const [loading, setLoading] = useState(false);
   const [notFound, setNotFound] = useState(0);
+  const [subPage, setSubPage] = useState(routes[0]);
 
   useEffect(() => {
     (async () => {
@@ -63,6 +69,43 @@ export default function CamperDetails() {
       </div>
 
       <CamperGallery camperName={camper.name} images={camper.gallery} />
+
+      <p className={css.text}>{camper.description}</p>
+
+      <ul className={css.nav}>
+        {routes.map((route) => (
+          <li key={route}>
+            <button
+              className={classNames(css.link, {
+                [css["link--current"]]: route === subPage,
+              })}
+              onClick={() => setSubPage(route)}
+            >
+              {route}
+            </button>
+          </li>
+        ))}
+      </ul>
+
+      <div className={css.separator} />
+
+      <div className={css.container}>
+        <div className={css.info}>
+          {subPage === "Features" && (
+            <CamperFeatures
+              form={camper.form}
+              width={camper.width}
+              height={camper.height}
+              length={camper.length}
+              tank={camper.tank}
+              consumption={camper.consumption}
+              {...getCamperCategories(camper)}
+            />
+          )}
+          {subPage === "Reviews" && <></>}
+        </div>
+        <div className={css.form}></div>
+      </div>
     </section>
   );
 }

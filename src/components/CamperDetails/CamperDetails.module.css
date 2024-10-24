@@ -3,3 +3,70 @@
   padding: 48px 64px;
   max-width: 1440px;
 }
+
+.text {
+  margin-top: 28px;
+  margin-bottom: 60px;
+
+  color: var(--text-secondary-color);
+}
+
+.separator {
+  width: 100%;
+  height: 1px;
+
+  background-color: var(--line-color);
+}
+
+.nav {
+  display: flex;
+  gap: 40px;
+  margin-bottom: 23.5px;
+}
+
+.link {
+  position: relative;
+
+  padding: 0;
+
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.2;
+
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.link--current::after {
+  content: "";
+
+  position: absolute;
+  left: 0;
+  bottom: -27px;
+
+  width: 100%;
+  height: 5px;
+
+  background-color: var(--accent-primary-color);
+}
+
+.container {
+  display: flex;
+  gap: 40px;
+  margin-top: 44px;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  flex-basis: 631px;
+}
+
+.form {
+  flex-grow: 1;
+  flex-basis: 641px;
+  height: 588px;
+  background-color: gray;
+}
