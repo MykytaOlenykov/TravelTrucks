@@ -9,6 +9,7 @@ import CamperHeader from "../CamperHeader";
 import CamperPrice from "../CamperPrice";
 import CamperGallery from "../CamperGallery";
 import CamperFeatures from "../CamperFeatures";
+import CamperReviews from "../CamperReviews";
 import Loader from "../Loader";
 import NotFound from "../NotFound";
 import css from "./CamperDetails.module.css";
@@ -21,7 +22,7 @@ export default function CamperDetails() {
   const [camper, setCamper] = useState(null);
   const [loading, setLoading] = useState(false);
   const [notFound, setNotFound] = useState(0);
-  const [subPage, setSubPage] = useState(routes[0]);
+  const [subPage, setSubPage] = useState(routes[1]);
 
   useEffect(() => {
     (async () => {
@@ -102,7 +103,7 @@ export default function CamperDetails() {
               {...getCamperCategories(camper)}
             />
           )}
-          {subPage === "Reviews" && <></>}
+          {subPage === "Reviews" && <CamperReviews reviews={camper.reviews} />}
         </div>
         <div className={css.form}></div>
       </div>

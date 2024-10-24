@@ -1,0 +1,56 @@
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 44px;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.avatar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 60px;
+  height: 60px;
+
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 1.33;
+  text-transform: uppercase;
+  color: var(--accent-primary-color);
+
+  background-color: var(--bg-secondary-color);
+  border-radius: 100%;
+}
+
+.name {
+  margin-bottom: 4px;
+
+  font-weight: 500;
+}
+
+.rating {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.icon {
+  width: 16px;
+  height: 16px;
+
+  fill: var(--bg-secondary-color);
+}
+
+.icon--accent {
+  fill: var(--icon-color);
+}
+
+.text {
+  color: var(--text-secondary-color);
+}
