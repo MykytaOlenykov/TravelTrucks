@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import { camperService } from "../../services";
 
 import Loader from "../Loader";
+import NotFound from "../NotFound";
 import css from "./CamperDetails.module.css";
 
 export default function CamperDetails() {
@@ -31,7 +32,13 @@ export default function CamperDetails() {
     })();
   }, [id]);
 
-  if (notFound) return null;
+  if (notFound) {
+    return (
+      <div style={{ display: "flex", justifyContent: "center" }}>
+        <NotFound />
+      </div>
+    );
+  }
 
   if (!camper || loading) return <Loader />;
 
