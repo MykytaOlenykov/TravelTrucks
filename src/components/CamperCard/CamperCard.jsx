@@ -1,4 +1,3 @@
-import { useNavigate } from "react-router-dom";
 import { BsHeart } from "react-icons/bs";
 
 import CamperHeader from "../CamperHeader";
@@ -19,7 +18,9 @@ export default function CamperCard({
   imgSrc,
   ...categories
 }) {
-  const navigate = useNavigate();
+  const handleNavigate = () => {
+    window.open(`/catalog/${id}`, "_blank", "noopener,noreferrer");
+  };
 
   return (
     <div className={css.container}>
@@ -45,11 +46,7 @@ export default function CamperCard({
 
         <CategoriesList maxShow={5} {...categories} />
 
-        <Button
-          className={css.button}
-          type="button"
-          onClick={() => navigate(`/catalog/${id}`)}
-        >
+        <Button className={css.button} type="button" onClick={handleNavigate}>
           Show more
         </Button>
       </div>
