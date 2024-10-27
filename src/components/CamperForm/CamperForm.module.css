@@ -19,11 +19,18 @@
   color: var(--label-color);
 }
 
-.input {
+.comment {
+  display: block;
+  height: 118px;
+  margin-bottom: 24px;
+}
+
+.container {
   margin-bottom: 14px;
 }
 
-.comment {
-  height: 118px;
-  margin-bottom: 24px;
+.error {
+  margin-top: 4px;
+
+  color: var(--accent-primary-color);
 }
