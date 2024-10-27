@@ -3,7 +3,7 @@ export const emailService = {
     const promise = new Promise((resolve) => {
       setTimeout(() => {
         resolve({ message: "ok" });
-      }, 3000);
+      }, 500);
     });
 
     const result = await promise;
