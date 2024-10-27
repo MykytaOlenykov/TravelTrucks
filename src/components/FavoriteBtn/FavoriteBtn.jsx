@@ -16,7 +16,12 @@ export default function FavoriteBtn({ camperId }) {
   const toggleFavorite = () => dispatch(toggleCamperFavorite(camperId));
 
   return (
-    <button className="reset-button" type="button" onClick={toggleFavorite}>
+    <button
+      style={{ cursor: "pointer" }}
+      className="reset-button"
+      type="button"
+      onClick={toggleFavorite}
+    >
       <RiHeartLine
         className={classNames(css.icon, {
           [css["icon--active"]]: favorites.includes(camperId),
