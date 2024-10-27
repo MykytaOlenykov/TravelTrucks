@@ -12,6 +12,7 @@
   background-color: var(--accent-primary-color);
   border-radius: 200px;
   border: none;
+  outline: none;
 
   cursor: pointer;
 

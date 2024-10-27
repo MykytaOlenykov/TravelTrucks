@@ -130,3 +130,8 @@
 .calendar :global .react-datepicker__day--outside-month {
   color: var(--text-secondary-color);
 }
+
+.calendar :global .react-datepicker__day--disabled {
+  color: var(--text-secondary-color) !important;
+  background-color: transparent !important;
+}

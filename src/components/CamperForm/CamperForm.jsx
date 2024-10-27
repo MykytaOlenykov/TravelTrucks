@@ -44,9 +44,7 @@ export default function CamperForm() {
   async function onSubmit(values) {
     try {
       setSending(true);
-      const res = await emailService.sendEmail({ data: values });
-      console.log(res);
-
+      await emailService.sendEmail({ data: values });
       toast.success("Your booking was successful!");
       setValidateOnChange(false);
       resetForm();
@@ -102,6 +100,7 @@ export default function CamperForm() {
           onChange={(date) => setFieldValue("date", date)}
           onBlur={() => validateField("date")}
           name="date"
+          minDate={new Date()}
           placeholderText="Booking date*"
         />
         {errors.date && <p className={css.error}>{errors.date}</p>}
@@ -113,7 +112,6 @@ export default function CamperForm() {
         onChange={handleChange("comment")}
         element="textarea"
         name="comment"
-        type="text"
         placeholder="Comment"
       />
 

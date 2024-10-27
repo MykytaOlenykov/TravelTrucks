@@ -24,9 +24,9 @@ export default function FiltersList({ title, options, onSelectFilter }) {
                 type="button"
               >
                 <Icon className={css.icon} />
-                <p className={css.text}>
+                <span className={css.text}>
                   {campersCategoriesLabels[categoryKey]}
-                </p>
+                </span>
               </button>
             </li>
           );
