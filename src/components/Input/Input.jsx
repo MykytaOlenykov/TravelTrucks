@@ -1,18 +1,20 @@
+import { forwardRef } from "react";
 import css from "./Input.module.css";
 
-export default function Input({
-  className = "",
-  element = "input",
-  ...otherProps
-}) {
+function Input({ className = "", element = "input", ...otherProps }, ref) {
   if (element === "textarea") {
     return (
       <textarea
+        ref={ref}
         className={`${css.input} ${className}`}
         {...otherProps}
       ></textarea>
     );
   }
 
-  return <input className={`${css.input} ${className}`} {...otherProps} />;
+  return (
+    <input ref={ref} className={`${css.input} ${className}`} {...otherProps} />
+  );
 }
+
+export default forwardRef(Input);

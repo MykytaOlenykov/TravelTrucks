@@ -1,6 +1,7 @@
 import Input from "../Input";
 import Button from "../Button";
 import css from "./CamperForm.module.css";
+import DatePicker from "../DatePicker";
 
 export default function CamperForm() {
   return (
@@ -22,11 +23,10 @@ export default function CamperForm() {
         type="text"
         placeholder="Email*"
       />
-      <Input
+      <DatePicker
         className={css.input}
         name="date"
-        type="text"
-        placeholder="Booking date*"
+        placeholderText="Booking date*"
       />
       <Input
         className={css.comment}
