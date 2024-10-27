@@ -1,7 +1,10 @@
 import { useState } from "react";
+import { BeatLoader } from "react-spinners";
 import toast from "react-hot-toast";
 import { useFormik } from "formik";
 import * as yup from "yup";
+
+import { emailService } from "../../services";
 
 import Input from "../Input";
 import Button from "../Button";
@@ -21,6 +24,7 @@ const validationSchema = yup.object({
 
 export default function CamperForm() {
   const [validateOnChange, setValidateOnChange] = useState(false);
+  const [sending, setSending] = useState(false);
 
   const {
     values,
@@ -33,18 +37,24 @@ export default function CamperForm() {
   } = useFormik({
     initialValues: { name: "", email: "", date: null, comment: "" },
     validationSchema,
-    onSubmit,
     validateOnChange,
+    onSubmit,
   });
 
-  function onSubmit(values) {
+  async function onSubmit(values) {
     try {
-      console.log(values);
+      setSending(true);
+      const res = await emailService.sendEmail({ data: values });
+      console.log(res);
+
+      toast.success("Your booking was successful!");
       setValidateOnChange(false);
       resetForm();
       // eslint-disable-next-line no-unused-vars
     } catch (error) {
       toast.error("Something went wrong. Try again.");
+    } finally {
+      setSending(false);
     }
   }
 
@@ -108,8 +118,12 @@ export default function CamperForm() {
       />
 
       <div style={{ display: "flex", justifyContent: "center" }}>
-        <Button style={{ minWidth: 166 }} type="submit">
-          Send
+        <Button style={{ minWidth: 166 }} type="submit" disabled={sending}>
+          {sending ? (
+            <BeatLoader style={{ display: "block", height: 24 }} color="#fff" />
+          ) : (
+            "Send"
+          )}
         </Button>
       </div>
     </form>
