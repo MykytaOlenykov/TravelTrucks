@@ -4,13 +4,17 @@ import { isAxiosError } from "axios";
 
 export const fetchCampers = createAsyncThunk(
   "campers/fetchAll",
-  async ({ params }, { rejectWithValue }) => {
+  async ({ params, signal }, { rejectWithValue }) => {
     try {
-      const data = await camperService.getAll({ params });
+      const data = await camperService.getAll({ params, signal });
       return data;
     } catch (error) {
-      const errorCode = isAxiosError(error) ? error.response.status : 500;
-      return rejectWithValue({ error: errorCode });
+      const errorCode = isAxiosError(error)
+        ? error.code === "ERR_CANCELED"
+          ? null
+          : error.response.status
+        : 500;
+      return rejectWithValue({ errorCode });
     }
   }
 );
