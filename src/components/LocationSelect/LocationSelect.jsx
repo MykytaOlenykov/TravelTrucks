@@ -16,41 +16,32 @@ import css from "./LocationSelect.module.css";
 
 export default function LocationSelect() {
   const dispatch = useDispatch();
-  const selectedLocationFilter = useSelector(selectLocationFilter);
+  const locationFilter = useSelector(selectLocationFilter);
 
-  const [locationFilter, setLocationFilter] = useState("");
   const [showLocationsList, setShowLocationsList] = useState(false);
 
   const locationsListRef = useRef();
 
-  const handleChangeSearchLocation = (e) => {
+  const handleChangeLocation = (e) => {
     const { value } = e.target;
-    setLocationFilter(value);
+    dispatch(changeLocationFilter(value));
   };
 
   const handleSelectLocation = (location) => {
     dispatch(changeLocationFilter(location));
-    setLocationFilter(location);
     setShowLocationsList(false);
   };
 
   const handleShowLocationsList = () => {
     setShowLocationsList(true);
-    setLocationFilter(selectedLocationFilter);
   };
 
   const handleHideLocationsList = () => {
     setShowLocationsList(false);
-    if (selectedLocationFilter) {
-      setLocationFilter(selectedLocationFilter);
-    } else {
-      setLocationFilter("");
-    }
   };
 
   const handleClearSelect = () => {
     dispatch(changeLocationFilter(""));
-    setLocationFilter("");
   };
 
   useOutsideClick(locationsListRef, handleHideLocationsList);
@@ -66,7 +57,7 @@ export default function LocationSelect() {
           [css["icon--active"]]: !!locationFilter.trim(),
         })}
       />
-      {!!selectedLocationFilter && (
+      {!!locationFilter && (
         <MdClose
           className={classNames(css.icon, css["icon--right"])}
           onClick={handleClearSelect}
@@ -75,11 +66,11 @@ export default function LocationSelect() {
 
       <Input
         className={css.input}
-        style={{ paddingRight: selectedLocationFilter ? 46 : undefined }}
+        style={{ paddingRight: locationFilter ? 46 : undefined }}
         value={locationFilter}
         type="text"
         placeholder="City"
-        onChange={handleChangeSearchLocation}
+        onChange={handleChangeLocation}
         onClick={handleShowLocationsList}
       />
 
