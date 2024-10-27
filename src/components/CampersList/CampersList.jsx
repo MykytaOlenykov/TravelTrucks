@@ -59,7 +59,7 @@ export default function CampersList() {
     };
   }, [dispatch, campersSearchParams]);
 
-  const loadNextPage = async (page) => {
+  const loadNextPage = (page) => {
     const container = listRef.current;
     setScrollValue((container?.scrollHeight ?? 0) + 32);
 
