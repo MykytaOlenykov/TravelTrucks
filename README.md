@@ -34,5 +34,3 @@ Start the development server:
 ```bash
 npm run dev
 ```
-
-Access the app at [http://localhost:5173](http://localhost:5173).
